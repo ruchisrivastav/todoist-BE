@@ -1,4 +1,3 @@
-gunicorn
 flask
 dnspython
 pymongo
