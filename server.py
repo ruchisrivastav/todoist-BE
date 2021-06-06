@@ -7,8 +7,13 @@ import databaseService as service
 app = flask.Flask(__name__)
 
 
-@app.route('/login', methods=['GET'])
+@app.route("/", methods=["GET"])
 def home():
+    return "<h3>Welcome to Todoist</h3>"
+
+
+@app.route('/login', methods=['GET'])
+def login():
     username = request.args.get("username")
     password = request.args.get("password")
     user = service.login(username, password)
