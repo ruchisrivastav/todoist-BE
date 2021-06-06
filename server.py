@@ -4,8 +4,10 @@ from flask import jsonify, make_response
 import constants
 import databaseService as service
 import base64
-
+from flask_cors import CORS, cross_origin
 app = flask.Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route("/", methods=["GET"])
@@ -21,11 +23,11 @@ def login():
     user = service.login(username, base64.b64encode(
         password.encode("ascii")).decode("utf-8"))
     if(user != None):
-        resp = jsonify({"message": "logged in", "username": user["username"]})
-        return make_response(resp, 200)
+        resp = jsonify({"message": "logged in", "status": 200 , "username": user["username"]})
+        return resp, 200
     else:
-        resp = jsonify({"message": "user does not exist"})
-        return make_response(resp, 400)
+        resp = jsonify({"message": "user does not exist", "status": 400})
+        return resp, 400
 
 
 @app.route("/register", methods=["POST"])
