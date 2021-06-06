@@ -23,7 +23,8 @@ def login():
     user = service.login(username, base64.b64encode(
         password.encode("ascii")).decode("utf-8"))
     if(user != None):
-        resp = jsonify({"message": "logged in", "status": 200 , "username": user["username"]})
+        resp = jsonify({"message": "logged in", "status": 200,
+                       "username": user["username"]})
         return resp, 200
     else:
         resp = jsonify({"message": "user does not exist", "status": 400})
@@ -34,6 +35,11 @@ def login():
 def register():
     requestData = request.get_json()
     return service.register(requestData.get("username"), requestData.get("password"))
+
+
+@app.route("/getData", methods=["GET"])
+def getData():
+    return service.getData(request.args.get("username"))
 
 
 if __name__ == "__main__":
