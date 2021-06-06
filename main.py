@@ -15,6 +15,3 @@ def home():
     if(user != None):
         resp = jsonify({"message": "logged in", "username": user["username"]})
         return make_response(resp, 200)
-
-
-app.run(debug=True)
