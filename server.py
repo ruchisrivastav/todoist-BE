@@ -18,3 +18,6 @@ def home():
     else:
         resp = jsonify({"message": "user does not exist"})
         return make_response(resp, 400)
+
+
+app.run(debug=True)

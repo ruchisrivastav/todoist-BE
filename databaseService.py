@@ -1,7 +1,7 @@
 import pymongo
 import constants
 
-mongoClient = pymongo.MongoClient(constants.MONGO_CLIENT)
+mongoClient = pymongo.MongoClient(constants.DEV_MONGO_CLIENT)
 database = mongoClient[constants.DATABASE]
 
 
