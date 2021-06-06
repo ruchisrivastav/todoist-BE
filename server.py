@@ -42,5 +42,17 @@ def getData():
     return service.getData(request.args.get("username"))
 
 
+@app.route("/deleteTask", methods=["PUT"])
+def deleteTask():
+    requestData = request.get_json()
+    return service.deleteTask(requestData.get("username"), requestData.get("date"), requestData.get("task"))
+
+
+@app.route("/editTask", methods=["PUT"])
+def editTask():
+    requestData = request.get_json()
+    return service.editTask(requestData.get("username"), requestData.get("currentDate"), requestData.get("currentTask"), requestData.get("newDate"), requestData.get("newTask"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
