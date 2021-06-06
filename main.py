@@ -15,3 +15,6 @@ def home():
     if(user != None):
         resp = jsonify({"message": "logged in", "username": user["username"]})
         return make_response(resp, 200)
+    else:
+        resp = jsonify({"message": "user does not exist"})
+        return make_response(resp, 400)
